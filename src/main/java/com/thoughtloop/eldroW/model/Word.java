@@ -1,20 +1,15 @@
 package com.thoughtloop.eldroW.model;
 
-import com.thoughtloop.eldroW.exception.InvalidWordException;
+import com.thoughtloop.eldroW.DAO.WordSourceDAO;
+import com.thoughtloop.eldroW.exception.InvalidWordFormatException;
+import com.thoughtloop.eldroW.exception.NonDictonaryWordException;
 
 public class Word {
 
     private String thisWord;
 
     public Word(String thisWord){
-        try {
-            Word.validateWord(thisWord);
-            this.thisWord = thisWord;
-        } catch (InvalidWordException e) {
-            e.printStackTrace();
-            this.thisWord = "XXXXX";
-        }
-
+        this.thisWord = thisWord.toUpperCase();
     }
 
     public String getThisWord() {
@@ -22,7 +17,7 @@ public class Word {
     }
 
     public void setThisWord(String thisWord) {
-        this.thisWord = thisWord;
+        this.thisWord = thisWord.toUpperCase();
     }
 
     @Override
@@ -30,9 +25,13 @@ public class Word {
         return thisWord;
     }
 
-    public static void validateWord(String word) throws InvalidWordException{
+    public static void validateWord(String word, WordSourceDAO wordSourceDAO) throws InvalidWordFormatException, NonDictonaryWordException {
         if((word.length() != 5) || (!word.matches("[a-zA-Z]+"))){
-            throw new InvalidWordException();
+            throw new InvalidWordFormatException();
+        }
+
+        if(!wordSourceDAO.isWordValid(word)){
+            throw new NonDictonaryWordException();
         }
     }
 }

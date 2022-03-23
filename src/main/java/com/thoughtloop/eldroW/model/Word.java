@@ -6,11 +6,15 @@ public class Word {
 
     private String thisWord;
 
-    public Word(String thisWord) throws InvalidWordException {
-        if((thisWord.length() != 5) || (!thisWord.matches("[a-zA-Z]+"))){
-            throw new InvalidWordException();
+    public Word(String thisWord){
+        try {
+            Word.validateWord(thisWord);
+            this.thisWord = thisWord;
+        } catch (InvalidWordException e) {
+            e.printStackTrace();
+            this.thisWord = "XXXXX";
         }
-        this.thisWord = thisWord;
+
     }
 
     public String getThisWord() {
@@ -24,5 +28,11 @@ public class Word {
     @Override
     public String toString() {
         return thisWord;
+    }
+
+    public static void validateWord(String word) throws InvalidWordException{
+        if((word.length() != 5) || (!word.matches("[a-zA-Z]+"))){
+            throw new InvalidWordException();
+        }
     }
 }

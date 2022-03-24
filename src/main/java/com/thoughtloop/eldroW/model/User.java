@@ -1,11 +1,14 @@
 package com.thoughtloop.eldroW.model;
 
+import java.util.List;
+
 public class User {
 
     private String firstName;
     private String lastName;
     private long userID;
     private Record record;
+    private List<String> previousWords;
 
 
     public User(String firstName, String lastName, long userID, Record record) {

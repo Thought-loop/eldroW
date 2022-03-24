@@ -1,0 +1,39 @@
+BEGIN TRANSACTION;
+ DROP TABLE IF EXISTS eldrow_user, solutions_5;
+ DROP SEQUENCE IF EXISTS seq_user_id, seq_word_id_solutions_5;
+
+CREATE SEQUENCE seq_user_id
+  INCREMENT BY 1
+  START WITH 101
+  NO MAXVALUE;
+  
+CREATE TABLE eldrow_user(
+user_id int NOT NULL DEFAULT nextval('seq_user_id'),
+	username varchar(50) NOT NULL,
+	CONSTRAINT PK_eldrow_user PRIMARY KEY (user_id),
+	CONSTRAINT UQ_username UNIQUE (username)
+);
+
+CREATE SEQUENCE seq_word_id_solutions_5
+  INCREMENT BY 1
+  START WITH 10000
+  NO MAXVALUE;
+
+CREATE TABLE solutions_5(
+	word_id int NOT NULL DEFAULT nextval('seq_word_id_solutions_5'),
+	word varchar(10),
+	solution boolean NOT NULL
+	enabled boolean DEFAULT true
+);
+
+COMMIT;
+-- CREATE SEQUENCE seq_word_id_valid_guesses_5
+--   INCREMENT BY 1
+--   START WITH 50000
+--   NO MAXVALUE; 
+
+-- CREATE TABLE valid_guesses_5(
+-- 	word_id int NOT NULL DEFAULT nextval('seq_word_id_valid_guesses_5'),
+-- 	word varchar(10),
+-- 	enabled boolean DEFAULT true
+-- );

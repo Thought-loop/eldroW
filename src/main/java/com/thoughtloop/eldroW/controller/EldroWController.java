@@ -9,5 +9,7 @@ public class EldroWController {
     private WordSourceDAO wordSourceDAO;
 
 
-
+    public EldroWController(WordSourceDAO wordSourceDAO) {
+        this.wordSourceDAO = wordSourceDAO;
+    }
 }

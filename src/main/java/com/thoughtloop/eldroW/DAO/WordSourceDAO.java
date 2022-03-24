@@ -8,10 +8,10 @@ public interface WordSourceDAO {
 
 
     //checks if word exists in the data source
-    boolean isWordValid(String word);
+    boolean isWordInDictionary(Word word);
 
     //return a new 5 letter word that was not on the list previousWords
-    Word getNewWord(List<Word> previousWords);
+    Word getNewWord(List<String> previousWords);
 
 
 }

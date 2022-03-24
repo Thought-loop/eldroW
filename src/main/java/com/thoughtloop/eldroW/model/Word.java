@@ -16,6 +16,10 @@ public class Word {
         return thisWord;
     }
 
+    public char[] getChars(){
+        return thisWord.toCharArray();
+    }
+
     public void setThisWord(String thisWord) {
         this.thisWord = thisWord.toUpperCase();
     }
@@ -25,13 +29,20 @@ public class Word {
         return thisWord;
     }
 
-    public static void validateWord(String word, WordSourceDAO wordSourceDAO) throws InvalidWordFormatException, NonDictonaryWordException {
-        if((word.length() != 5) || (!word.matches("[a-zA-Z]+"))){
+    public static void validateWord(Word word, WordSourceDAO wordSourceDAO) throws InvalidWordFormatException, NonDictonaryWordException {
+        if((word.getThisWord().length() != 5) || (!word.getThisWord().matches("[a-zA-Z]+"))){
             throw new InvalidWordFormatException();
         }
 
-        if(!wordSourceDAO.isWordValid(word)){
+        if(!wordSourceDAO.isWordInDictionary(word)){
             throw new NonDictonaryWordException();
         }
+    }
+
+    public boolean equals(Word word){
+        if(thisWord.equals(word.toString())){
+            return true;
+        }
+        return false;
     }
 }

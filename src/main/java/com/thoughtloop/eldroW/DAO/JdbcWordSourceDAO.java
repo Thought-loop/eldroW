@@ -1,0 +1,48 @@
+package com.thoughtloop.eldroW.DAO;
+
+import com.thoughtloop.eldroW.model.Word;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class JdbcWordSourceDAO implements WordSourceDAO{
+
+    private JdbcTemplate jdbcTemplate;
+
+    public JdbcWordSourceDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    //check if a given word exists in either solutions_5 or valid_guesses_5 tables
+    @Override
+    public boolean isWordInDictionary(Word word) {
+        String sql = "SELECT word FROM solutions_5 WHERE word = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, word.getThisWord());
+        if(results.next()){
+            return true;
+        }
+        return false;
+    }
+
+
+    //2315 words in solutions_5 table
+    //query for a new word using randomly seeded word_id
+    //check if word has already been played by user, query again if so
+    @Override
+    public Word getNewWord(List<String> previousWords) {
+
+        String newWord = "";
+        do{
+            int randomWordId = (int) (Math.random()*2316);
+            String sql = "SELECT word FROM solutions_5 WHERE solution IS true AND word_id = ?;";
+            newWord = jdbcTemplate.queryForObject(sql, String.class, randomWordId);
+        }
+        while(previousWords.contains(newWord.toUpperCase()));
+
+        return new Word(newWord);
+
+    }
+}

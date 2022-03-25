@@ -27,6 +27,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\workspace\side-projects\eldroW\src\main\resources\public" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="EldroWApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thoughtloop.eldroW.EldroWApplication" />

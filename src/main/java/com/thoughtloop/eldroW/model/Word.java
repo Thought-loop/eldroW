@@ -1,8 +1,7 @@
 package com.thoughtloop.eldroW.model;
 
 import com.thoughtloop.eldroW.DAO.WordSourceDAO;
-import com.thoughtloop.eldroW.exception.InvalidWordFormatException;
-import com.thoughtloop.eldroW.exception.NonDictonaryWordException;
+
 
 public class Word {
 

@@ -21,7 +21,11 @@ public class EldroWController {
     //1=letter in solution, not in correct position
     //2=letter in correct position
     @RequestMapping(path = "/guess", method = RequestMethod.POST)
-    public int[] checkGuess(String guess, int solutionId){
+    public int[] checkGuess(@RequestParam String guess, Integer solutionId){
+        System.out.println("guess: " + guess);
+        System.out.println(solutionId);
+
+        guess = guess.toLowerCase();
         int[] response = new int[]{-1,-1,-1,-1,-1};
 
         if (wordSourceDAO.isWordInDictionary(guess)) {
@@ -41,6 +45,8 @@ public class EldroWController {
         return response;
     }
 
+
+    //retrieve a random word_id from the database
     @RequestMapping(path = "/new", method = RequestMethod.GET)
     public int newWord(){
         return wordSourceDAO.getNewWord();

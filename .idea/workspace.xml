@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="103b2a6e-44a9-444f-b4ab-e3a452e932bc" name="Changes" comment="" />
+    <list default="true" id="a0f4bf3e-8472-43b6-853f-33845e91025a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +18,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectId" id="26lToH7thh845kP5JYPrUFVKEuT" />
+  <component name="ProjectId" id="26sZjl5RYIp42bTrVQINjcPu4ML" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,7 +27,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager" selected="Application.EldroWApplication">
+  <component name="RunManager">
     <configuration name="EldroWApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thoughtloop.eldroW.EldroWApplication" />
       <module name="eldroW" />
@@ -41,36 +41,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EldroWApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="eldroW" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thoughtloop.eldroW.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.thoughtloop.eldroW" />
-      <option name="MAIN_CLASS_NAME" value="com.thoughtloop.eldroW.EldroWApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.EldroWApplication" />
-        <item itemvalue="JUnit.EldroWApplicationTests" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="103b2a6e-44a9-444f-b4ab-e3a452e932bc" name="Changes" comment="" />
-      <created>1647997346249</created>
+      <changelist id="a0f4bf3e-8472-43b6-853f-33845e91025a" name="Changes" comment="" />
+      <created>1648214396633</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1647997346249</updated>
+      <updated>1648214396633</updated>
     </task>
     <servers />
   </component>

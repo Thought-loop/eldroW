@@ -10,16 +10,24 @@ let currentUserGuess = '';
 let gameSolutionID = 0;
 let alertBox;
 let winner = false;
+let refreshButton;
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const letterKeys = document.querySelectorAll('.letter-key');
     alertBox = document.querySelector('.alert-box');
+    refreshButton = document.querySelector('.refresh-button');
     
     //add listeners to all keys
     letterKeys.forEach(el => el.addEventListener('click', event => {
         if(!winner){inputController(event.target)};
     }));
+
+    refreshButton.addEventListener('click', (event) => {
+        resetBoard();
+        getNewWord();
+    });
+
 
     getNewWord();
 
@@ -67,6 +75,9 @@ function inputController(key){
         else if(containsChars[activeChar].includes(key.innerText)){
             updateCurrentBoxStyle('contains');
         }
+        else{
+            updateCurrentBoxStyle('incorrect');
+        }
         letters[activeChar].innerText = key.innerText;
         currentUserGuess += key.innerText;
         activeChar++;
@@ -79,9 +90,11 @@ function updateCurrentBoxStyle(status, charToUpdate = activeChar){
     const currentLetterBoxes = currentWordLine.getElementsByClassName('letter-box');
     if(status == 'correct'){
         currentLetterBoxes[charToUpdate].classList.add('letter-box-correct');
+        currentLetterBoxes[charToUpdate].classList.remove('letter-box-incorrect');
     }
     else if(status == 'contains'){
         currentLetterBoxes[charToUpdate].classList.add('letter-box-contains');
+        currentLetterBoxes[charToUpdate].classList.remove('letter-box-incorrect');
     }
     else if(status == 'delete'){
         currentLetterBoxes[charToUpdate].classList.remove('letter-box-contains');
@@ -107,6 +120,28 @@ function updateKeyStyle(key, status){
         keyToUpdate.classList.add('letter-key-dormant');
     }
 
+}
+
+function resetBoard(){
+    let letterBoxes = document.querySelectorAll('.letter-box');
+    let letterKeys = document.querySelectorAll('.letter-key');
+    letterKeys.forEach((key) => {
+        key.classList.remove('letter-key-dormant');
+        key.classList.remove('letter-key-contains');
+        key.classList.remove('letter-key-correct');
+    });
+
+    letterBoxes.forEach((box) => {
+        box.classList.remove('letter-box-contains');
+        box.classList.remove('letter-box-correct');
+        box.classList.remove('letter-box-incorrect');
+        box.innerText = ' ';
+    });
+    activeRow = 0;
+    activeChar = 0;
+    currentUserGuess = '';
+    correctChars = ['','','','',''];
+    containsChars= ['','','','',''];
 }
 
 function getNewWord(){
@@ -151,19 +186,22 @@ function showAnswer(guessValidation){
     }
     else{
         for (let i = 0; i < 5; i++) {
+            
+            console.log('here' + guessValidation[i]);
             if(guessValidation[i] == 2){
-                updateCurrentBoxStyle('correct',i)
+                
+                updateCurrentBoxStyle('correct',i);
                 updateKeyStyle(currentUserGuess.charAt(i),'correct');
                 correctChars[i] = currentUserGuess[i];
             }
             else if(guessValidation[i] == 1){
-                updateCurrentBoxStyle('contains',i)
+                updateCurrentBoxStyle('contains',i);
                 updateKeyStyle(currentUserGuess.charAt(i),'contains');
                 containsChars[i] += currentUserGuess[i];
                 allLettersCorrect = false;
             }
             else if(guessValidation[i] == 3){
-                updateCurrentBoxStyle('delete',i)
+                updateCurrentBoxStyle('incorrect',i);
                 allLettersCorrect = false;
             }
             else{

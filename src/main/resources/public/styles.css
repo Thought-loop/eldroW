@@ -11,11 +11,31 @@ header{
     border-bottom-style: solid;
     border-bottom-color: rgba(245, 245, 245, 0.25);
     border-bottom-width: 1px;
+    display: flex;
+    padding-left: 3.5rem;
+    padding-right: 1rem;
+
+}
+
+.refresh-button{
+    height: 2rem;
+    padding-left: 2px;
+    border-radius: 100%;
+}
+
+.refresh-button:hover{
+    background-color: rgba(245, 245, 245, 0.534);
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
 }
 
 .title{
     margin: 0px;
     text-align: center;
+    flex-grow: 1;
 }
 
 .word-area{
@@ -33,6 +53,7 @@ header{
 }
 
 .letter-box{
+    
     color: rgba(128, 128, 128, 0.623);
     text-align: center;
     font-size: 2em;
@@ -131,6 +152,10 @@ header{
     border-radius: 5px;
 }
 
+.letter-key:hover{
+    color: whitesmoke;
+}
+
 .letter-key-dormant{
     background-color: rgba(128, 128, 128, 0.25);
 }
@@ -149,11 +174,31 @@ header{
     height: 1rem;
 }
 
+.alert-area{
+    height: 2rem;
+}
+
 .alert-box{
     color: whitesmoke;
     text-align-last: center;
 }
 
+.footer{
+    margin-top: .5rem;
+}
+
+.creator-info{
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color:rgba(245, 245, 245, 0.25);
+    color: rgba(245, 245, 245, 0.671);
+    text-align-last: center;
+    padding-top: 1rem;
+}
+
+.creator-info a{
+    color: rgba(245, 245, 245, 0.671);
+}
 
 
 

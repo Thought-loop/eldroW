@@ -1,12 +1,8 @@
 package com.thoughtloop.eldroW.DAO;
 
-import com.thoughtloop.eldroW.model.User;
-import com.thoughtloop.eldroW.model.Word;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class JdbcWordSourceDAO implements WordSourceDAO{
@@ -44,10 +40,10 @@ public class JdbcWordSourceDAO implements WordSourceDAO{
     //2315 words in solutions_5 table
     //query for a new word using randomly seeded word_id
     //check if word has already been played by user, query again if so
-    //max solution id range is 31460 - 33596
+    //max solution id range is 10000 - 12314
     @Override
     public int getNewWord() {
-        int randomWordId = ((int)(Math.random()*(33596-31460)))+31459;
+        int randomWordId = ((int)(Math.random()*(12314-10000)))+9999;
         System.out.println(randomWordId);
         String sql = "SELECT word FROM solutions_5 WHERE solution IS true AND word_id = ?;";
         System.out.println(jdbcTemplate.queryForObject(sql, String.class, randomWordId));

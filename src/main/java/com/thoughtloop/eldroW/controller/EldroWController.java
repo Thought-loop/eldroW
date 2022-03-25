@@ -26,7 +26,6 @@ public class EldroWController {
     //1=letter in solution, not in correct position
     //2=letter in correct position
     //3=letter in solution, but already placed in proper slot OR proper quantity already shown
-    // (and no more of those characters remain)
     @RequestMapping(path = "/guess", method = RequestMethod.POST)
     public int[] checkGuess(@RequestBody Guess userGuess){
         System.out.println(userGuess);
@@ -66,9 +65,6 @@ public class EldroWController {
                     response[i] = 0;
                 }
             }
-            //after we do a first pass, need to first decrement correct character counts in map
-            //then we check contains characters from left to right, setting response to 3 if zero counts left in map
-            //if there are counts left, decrement the count and loop
 
             for (int i = 0; i < 5; i++) {
                 if(response[i]==2){
@@ -80,9 +76,6 @@ public class EldroWController {
                     if(solutionLetterCounts.get(guessChars[i])==0){
                         response[i]=3;
                     }
-//                    else{
-//                        solutionLetterCounts.replace(guessChars[i], solutionLetterCounts.get(guessChars[i])-1);
-//                    }
                 }
 
             }

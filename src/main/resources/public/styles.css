@@ -2,12 +2,11 @@ body{
     background-color: black;
     display: grid;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    width: fit-content;
 }
 
 header{
     color: whitesmoke;
-    padding-left: 7.5rem;
-    width: 14em;
     height: 100%;
     border-bottom-style: solid;
     border-bottom-color: rgba(245, 245, 245, 0.25);
@@ -16,11 +15,13 @@ header{
 
 .title{
     margin: 0px;
+    text-align: center;
 }
 
 .word-area{
     margin-top: 1em;
     padding-left: 2em;
+    padding-right: 2em;
 }
 
 .word-line{
@@ -58,11 +59,34 @@ header{
 .letter-box-contains{
     background-color: rgb(175, 152, 22);
     color: whitesmoke;
+
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
 }
 
 .letter-box-correct{
     background-color: rgb(96, 168, 38);
     color: whitesmoke;
+
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
+
+.letter-box-incorrect{
+    background-color: rgba(128, 128, 128, 0.623);
+    color: rgba(245, 245, 245, 0.507);
+
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
 }
 
 .keyboard-area{
@@ -124,6 +148,12 @@ header{
     width: 1.5rem;
     height: 1rem;
 }
+
+.alert-box{
+    color: whitesmoke;
+    text-align-last: center;
+}
+
 
 
 

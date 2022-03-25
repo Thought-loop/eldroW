@@ -4,24 +4,25 @@ let activeRow = 0;
 //characters 0-4. 0 on left
 let activeChar = 0;
 
-let correctChars = ["","","","",""];
+let correctChars = ['','','','',''];
 let containsChars= ['','','','',''];
 let currentUserGuess = '';
 let gameSolutionID = 0;
+let alertBox;
+let winner = false;
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const letterKeys = document.querySelectorAll('.letter-key');
-
+    alertBox = document.querySelector('.alert-box');
     letterKeys.forEach(el => el.addEventListener('click', event => {
-        inputController(event.target);
+        if(!winner){inputController(event.target)};
     }));
+
 
     getNewWord();
 
 });
-
-
 
 function inputController(key){
     console.log(key.innerText);
@@ -38,6 +39,7 @@ function inputController(key){
             letters[activeChar].innerText = '';
             updateCurrentBoxStyle('delete');
             currentUserGuess = currentUserGuess.slice(0,-1);
+            alertBox.innerText = '';
         }
     }
     //submit a complete line
@@ -61,7 +63,7 @@ function inputController(key){
             console.log('correct letter');
             updateCurrentBoxStyle('correct');
         }
-        else if(containsChars[activeChar]==key.innerText){
+        else if(containsChars[activeChar].includes(key.innerText)){
             updateCurrentBoxStyle('contains');
         }
         letters[activeChar].innerText = key.innerText;
@@ -69,8 +71,6 @@ function inputController(key){
         activeChar++;
     }
 }
-
-
 
 //updates the styling of the current editing box
 function updateCurrentBoxStyle(status, charToUpdate = activeChar){
@@ -85,7 +85,27 @@ function updateCurrentBoxStyle(status, charToUpdate = activeChar){
     else if(status == 'delete'){
         currentLetterBoxes[charToUpdate].classList.remove('letter-box-contains');
         currentLetterBoxes[charToUpdate].classList.remove('letter-box-correct');
+        currentLetterBoxes[charToUpdate].classList.remove('letter-box-incorrect');
     }
+    else if(status == 'incorrect'){
+        currentLetterBoxes[charToUpdate].classList.add('letter-box-incorrect');
+    }
+}
+
+//updates the keyboard styling
+function updateKeyStyle(key, status){
+    const keyToUpdate = document.getElementById(key);
+    
+    if(status == 'correct'){
+        keyToUpdate.classList.add('letter-key-correct');
+    }
+    else if(status == 'contains'){
+        keyToUpdate.classList.add('letter-key-contains');
+    }
+    else if(status == 'incorrect'){
+        keyToUpdate.classList.add('letter-key-dormant');
+    }
+
 }
 
 function getNewWord(){
@@ -102,29 +122,13 @@ function setSolutionID(id){
     console.log(gameSolutionID);
 }
 
-function setLastGuessResponse(guessValidation){
-    console.log('active row: ' + activeRow);
-
-    for (let i = 0; i < 5; i++) {
-        if(guessValidation[i] == 2){
-            updateCurrentBoxStyle('correct',i)
-        }
-        else if(guessValidation[i] == 1){
-            updateCurrentBoxStyle('contains',i)
-        }
-    }
-    activeChar = 0;
-    activeRow++;
-    currentUserGuess = '';
-}
-
 function checkWord(userGuess){
     //call endpoint to validate guess
     //if valid, do stuff
 
     fetch('http://localhost:8080/guess?' + new URLSearchParams({guess:userGuess, solutionId:gameSolutionID}), {
         method:"POST"
-        }).then(result => {result.json().then(data => setLastGuessResponse(data));
+        }).then(result => {result.json().then(data => showAnswer(data));
             
         }).catch(err => {
             // if any error occured, then catch it here
@@ -132,16 +136,41 @@ function checkWord(userGuess){
         });
 }
 
-function updateGuessStyling(){
-    
-    for (let i = 0; i < 5; i++) {
-        if(guessValidation[i] == 2){
-            updateCurrentBoxStyle('correct',i);
-            correctChars[i] = currentUserGuess[i];
-        }
-        else if(guessValidation[i] == 1){
-            updateCurrentBoxStyle('contains',i);
-        }
+function showAnswer(guessValidation){
+    console.log(guessValidation);
+    let allLettersCorrect = true;
+    if(guessValidation[0]==-1){
+        //not a valid 5 letter word
+        alertBox.innerText = 'Not a valid word.';
     }
-    console.log(correctChars);
+    else{
+        for (let i = 0; i < 5; i++) {
+            if(guessValidation[i] == 2){
+                updateCurrentBoxStyle('correct',i)
+                updateKeyStyle(currentUserGuess.charAt(i),'correct');
+                correctChars[i] = currentUserGuess[i];
+            }
+            else if(guessValidation[i] == 1){
+                updateCurrentBoxStyle('contains',i)
+                updateKeyStyle(currentUserGuess.charAt(i),'contains');
+                containsChars[i] += currentUserGuess[i];
+                allLettersCorrect = false;
+            }
+            else{
+                updateCurrentBoxStyle('incorrect',i);
+                updateKeyStyle(currentUserGuess.charAt(i),'incorrect');
+                allLettersCorrect = false;
+            }
+        }
+        console.log(correctChars);
+
+        if(allLettersCorrect){
+            winner = true;
+            alertBox.innerText = 'Well done!';
+        }
+        activeChar = 0;
+        activeRow++;
+        currentUserGuess = '';
+    }
+    
 }

@@ -1,8 +1,10 @@
 package com.thoughtloop.eldroW;
 
-import org.junit.jupiter.api.Test;
+import com.thoughtloop.eldroW.DAO.JdbcWordSourceDAO;
+import org.junit.Test;
+import org.springframework.jdbc.core.JdbcTemplate;
+
 
 public class WordTests {
-
 
 }

@@ -1,0 +1,17 @@
+INSERT into eldrow_user (wins,losses,games) values (0,0,0) returning user_id;
+
+select * from eldrow_user
+
+select * from solutions_5;
+
+select * from user_previous_words;
+
+UPDATE solutions_5 SET solution = true WHERE solution is null;
+
+DELETE FROM solutions_5 WHERE solution is null;
+
+select * from users
+
+SELECT word, word_id from solutions_5 where word_id = (floor(random()*(2316)));
+
+SELECT word, word_id FROM solutions_5 WHERE solution IS false AND word_id = 31470

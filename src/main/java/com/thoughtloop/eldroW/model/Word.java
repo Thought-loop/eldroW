@@ -29,15 +29,15 @@ public class Word {
         return thisWord;
     }
 
-    public static void validateWord(Word word, WordSourceDAO wordSourceDAO) throws InvalidWordFormatException, NonDictonaryWordException {
-        if((word.getThisWord().length() != 5) || (!word.getThisWord().matches("[a-zA-Z]+"))){
-            throw new InvalidWordFormatException();
-        }
-
-        if(!wordSourceDAO.isWordInDictionary(word)){
-            throw new NonDictonaryWordException();
-        }
-    }
+//    public static void validateWord(Word word, WordSourceDAO wordSourceDAO) throws InvalidWordFormatException, NonDictonaryWordException {
+//        if((word.getThisWord().length() != 5) || (!word.getThisWord().matches("[a-zA-Z]+"))){
+//            throw new InvalidWordFormatException();
+//        }
+//
+//        if(!wordSourceDAO.isWordInDictionary(word)){
+//            throw new NonDictonaryWordException();
+//        }
+//    }
 
     public boolean equals(Word word){
         if(thisWord.equals(word.toString())){

@@ -4,41 +4,21 @@ import java.util.List;
 
 public class User {
 
-    private String firstName;
-    private String lastName;
     private long userID;
     private Record record;
     private List<String> previousWords;
 
 
-    public User(String firstName, String lastName, long userID, Record record) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(long userID, Record record) {
         this.userID = userID;
         this.record = record;
     }
 
-    public User(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        long userID = -1;
-        record = new Record();
+    public User(long userID) {
+        this.userID = userID;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public User() {
     }
 
     public long getUserID() {

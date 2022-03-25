@@ -1,4 +1,4 @@
-Insert into valid_guesses_5 (word) VALUES
+Insert into solutions_5 (word) VALUES
 ('aahed'),
 ('aalii'),
 ('aargh'),

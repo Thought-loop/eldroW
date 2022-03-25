@@ -15,10 +15,11 @@ let winner = false;
 document.addEventListener('DOMContentLoaded', () => {
     const letterKeys = document.querySelectorAll('.letter-key');
     alertBox = document.querySelector('.alert-box');
+    
+    //add listeners to all keys
     letterKeys.forEach(el => el.addEventListener('click', event => {
         if(!winner){inputController(event.target)};
     }));
-
 
     getNewWord();
 
@@ -126,8 +127,13 @@ function checkWord(userGuess){
     //call endpoint to validate guess
     //if valid, do stuff
 
-    fetch('http://localhost:8080/guess?' + new URLSearchParams({guess:userGuess, solutionId:gameSolutionID}), {
-        method:"POST"
+    fetch('http://localhost:8080/guess', {
+        method:"POST",  
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({guess: userGuess, solutionId: gameSolutionID, correctChars: correctChars, containsChars: containsChars})
         }).then(result => {result.json().then(data => showAnswer(data));
             
         }).catch(err => {
@@ -154,6 +160,10 @@ function showAnswer(guessValidation){
                 updateCurrentBoxStyle('contains',i)
                 updateKeyStyle(currentUserGuess.charAt(i),'contains');
                 containsChars[i] += currentUserGuess[i];
+                allLettersCorrect = false;
+            }
+            else if(guessValidation[i] == 3){
+                updateCurrentBoxStyle('delete',i)
                 allLettersCorrect = false;
             }
             else{

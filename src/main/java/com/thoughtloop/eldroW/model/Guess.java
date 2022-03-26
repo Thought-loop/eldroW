@@ -15,6 +15,10 @@ public class Guess {
         this.containsChars = containsChars;
     }
 
+    public Guess(int solutionId) {
+        this.solutionId = solutionId;
+    }
+
     public String getGuess() {
         return guess;
     }

@@ -184,7 +184,11 @@ function revealWord(){
             'Content-Type': 'application/json'
           },
         body: JSON.stringify({solutionId: gameSolutionID})
-        }).then(result => { displaySolution(data)}            
+        }).then(response => response.text()) 
+        .then((dataStr) => {
+            let data = JSON.parse(dataStr);
+            displaySolution(data);
+        }            
         ).catch(err => {
             // if any error occured, then catch it here
             console.error(err);

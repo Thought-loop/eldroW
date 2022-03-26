@@ -175,6 +175,19 @@ function checkWord(userGuess){
         });
 }
 
+function revealWord(){
+    fetch(API_BASE_URL+'guess').then(result => {result.json().then(data => displaySolution(data));
+            
+        }).catch(err => {
+            // if any error occured, then catch it here
+            console.error(err);
+        });
+}
+
+function displaySolution(word){
+    alertBox.innerText = 'The word was: ' + word;
+}
+
 function showAnswer(guessValidation){
     let allLettersCorrect = true;
     if(guessValidation[0]==-1){

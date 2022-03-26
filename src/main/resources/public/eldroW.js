@@ -34,8 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function inputController(key){
-    console.log(key.innerText);
-    console.log('active char: ' + activeChar);
 
     let wordLine = document.getElementById('word-line-'+ activeRow);
     let letters = wordLine.querySelectorAll('.letter-box')
@@ -69,7 +67,6 @@ function inputController(key){
     //concatenate character to currentUserGuess
     else if(activeChar<5){
         if(correctChars[activeChar]==key.innerText){
-            console.log('correct letter');
             updateCurrentBoxStyle('correct');
         }
         else if(containsChars[activeChar].includes(key.innerText)){
@@ -155,7 +152,6 @@ function getNewWord(){
 
 function setSolutionID(id){
     gameSolutionID = id;
-    console.log(gameSolutionID);
 }
 
 function checkWord(userGuess){
@@ -178,7 +174,6 @@ function checkWord(userGuess){
 }
 
 function showAnswer(guessValidation){
-    console.log(guessValidation);
     let allLettersCorrect = true;
     if(guessValidation[0]==-1){
         //not a valid 5 letter word
@@ -186,8 +181,7 @@ function showAnswer(guessValidation){
     }
     else{
         for (let i = 0; i < 5; i++) {
-            
-            console.log('here' + guessValidation[i]);
+
             if(guessValidation[i] == 2){
                 
                 updateCurrentBoxStyle('correct',i);
@@ -210,7 +204,6 @@ function showAnswer(guessValidation){
                 allLettersCorrect = false;
             }
         }
-        console.log(correctChars);
 
         if(allLettersCorrect){
             winner = true;

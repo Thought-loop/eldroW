@@ -28,7 +28,6 @@ public class EldroWController {
     //3=letter in solution, but already placed in proper slot OR proper quantity already shown
     @RequestMapping(path = "/guess", method = RequestMethod.POST)
     public int[] checkGuess(@RequestBody Guess userGuess){
-        System.out.println(userGuess);
 
         int solutionId = userGuess.getSolutionId();
         String guess = userGuess.getGuess().toLowerCase();
@@ -53,7 +52,6 @@ public class EldroWController {
             }
 
 
-            System.out.println(solutionLetterCounts);
 
             char[] guessChars = guess.toCharArray();
             for (int i = 0; i < 5; i++) {
@@ -79,8 +77,7 @@ public class EldroWController {
                 }
 
             }
-            System.out.println(solutionLetterCounts);
-            System.out.println(Arrays.toString(response));
+
         }
         return response;
     }

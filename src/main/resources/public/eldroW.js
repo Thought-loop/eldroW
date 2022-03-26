@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     refreshButton.addEventListener('click', (event) => {
         winner = false;
+        alertBox.innerText = '';
         resetBoard();
         getNewWord();
     });

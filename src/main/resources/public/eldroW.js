@@ -76,7 +76,7 @@ function inputController(key){
             updateCurrentBoxStyle('contains');
         }
         else{
-            updateCurrentBoxStyle('incorrect');
+            updateCurrentBoxStyle('filled');
         }
         letters[activeChar].innerText = key.innerText;
         currentUserGuess += key.innerText;
@@ -100,9 +100,13 @@ function updateCurrentBoxStyle(status, charToUpdate = activeChar){
         currentLetterBoxes[charToUpdate].classList.remove('letter-box-contains');
         currentLetterBoxes[charToUpdate].classList.remove('letter-box-correct');
         currentLetterBoxes[charToUpdate].classList.remove('letter-box-incorrect');
+        currentLetterBoxes[charToUpdate].classList.remove('letter-box-filled');
     }
     else if(status == 'incorrect'){
         currentLetterBoxes[charToUpdate].classList.add('letter-box-incorrect');
+    }
+    else if(status == 'filled'){
+        currentLetterBoxes[charToUpdate].classList.add('letter-box-filled');
     }
 }
 

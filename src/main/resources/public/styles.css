@@ -76,9 +76,9 @@ header{
     border-width: 1px;
 }
 
-.letter-box:hover{
+/* .letter-box:hover{
     color: white;
-}
+} */
 
 
 .letter-box-contains{
@@ -112,6 +112,22 @@ header{
     -o-transition: background-color 1000ms linear;
     -ms-transition: background-color 1000ms linear;
     transition: background-color 1000ms linear;
+}
+
+.letter-box-filled{
+    border-color: whitesmoke;
+    color: whitesmoke;
+
+    -webkit-transition: border-color 1000ms linear;
+    -moz-transition: border-color 1000ms linear;
+    -o-transition: border-color 1000ms linear;
+    -ms-transition: border-color 1000ms linear;
+    transition: border-color 1000ms linear;
+    -webkit-transition: color 1000ms linear;
+    -moz-transition: color 1000ms linear;
+    -o-transition: color 1000ms linear;
+    -ms-transition: color 1000ms linear;
+    transition: color 1000ms linear;
 }
 
 .keyboard-area{
@@ -160,6 +176,8 @@ header{
 .letter-key:hover{
     color: whitesmoke;
 }
+
+
 
 .letter-key-dormant{
     background-color: rgba(128, 128, 128, 0.25);

@@ -92,7 +92,7 @@ public class EldroWController {
 
 
     @RequestMapping(path = "/solution", method = RequestMethod.POST)
-    public String getWord(@RequestParam Guess solution){
+    public String getWord(@RequestBody Guess solution){
         return wordSourceDAO.getWord(solution.getSolutionId());
     }
 

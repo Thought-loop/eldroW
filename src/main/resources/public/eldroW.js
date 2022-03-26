@@ -1,4 +1,4 @@
-const API_BASE_URL = '/'
+const API_BASE_URL = 'eldrow/'
 //rows 0-5. 0 at top
 let activeRow = 0;
 //characters 0-4. 0 on left

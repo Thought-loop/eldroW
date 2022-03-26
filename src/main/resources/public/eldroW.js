@@ -139,6 +139,7 @@ function resetBoard(){
         box.classList.remove('letter-box-contains');
         box.classList.remove('letter-box-correct');
         box.classList.remove('letter-box-incorrect');
+        box.classList.remove('letter-box-filled');
         box.innerText = ' ';
     });
     activeRow = 0;

@@ -89,7 +89,9 @@ public class EldroWController {
         return wordSourceDAO.getNewWord();
     }
 
-    @RequestMapping(path = "/solution", method = RequestMethod.GET)
+
+    
+    @RequestMapping(path = "/solution", method = RequestMethod.POST)
     public String getWord(@RequestParam Integer solutionId){
         return wordSourceDAO.getWord(solutionId);
     }

@@ -205,7 +205,15 @@ header{
     color: rgba(245, 245, 245, 0.671);
 }
 
+@media only screen and (max-height: 820px) {
+   .letter-key{
+       width: .35rem;
+   }
 
+   .word-area{
+       margin: 10px;
+   }
+  }
 
 
 

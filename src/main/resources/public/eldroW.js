@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         winner = false;
         alertBox.innerText = '';
         resetBoard();
+        revealWord();
         getNewWord();
     });
 

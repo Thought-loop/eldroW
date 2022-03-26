@@ -207,11 +207,17 @@ header{
 
 @media only screen and (max-height: 820px) {
    .letter-key{
-       width: .35rem;
+       width: .2rem;
+   }
+
+   .letter-box{
+       height: 2rem;
+       width: 2rem;
    }
 
    .word-area{
        margin: 10px;
+       margin-bottom: 0px;
    }
   }
 

@@ -189,10 +189,9 @@ function revealWord(){
             let data = JSON.parse(dataStr);
             displaySolution(data);
         }            
-        ).catch(err => {
-            // if any error occured, then catch it here
-            console.error(err);
-        });
+        ).catch((error)=>{
+            console.error(error);
+          });
 }
 
 function displaySolution(word){

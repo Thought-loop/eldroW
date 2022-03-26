@@ -1,4 +1,4 @@
-
+const API_BASE_URL = 'https://www.thought-loop.com/eldrow/'
 //rows 0-5. 0 at top
 let activeRow = 0;
 //characters 0-4. 0 on left
@@ -145,7 +145,7 @@ function resetBoard(){
 }
 
 function getNewWord(){
-    fetch('http://localhost:8080/new').then(result => {
+    fetch(API_BASE_URL+'new').then(result => {
             result.json().then(data => setSolutionID(data));
         }).catch(err => {
             // if any error occurred, then catch it here
@@ -162,7 +162,7 @@ function checkWord(userGuess){
     //call endpoint to validate guess
     //if valid, do stuff
 
-    fetch('http://localhost:8080/guess', {
+    fetch(API_BASE_URL+'guess', {
         method:"POST",  
         headers: {
             'Accept': 'application/json, text/plain, */*',

@@ -90,10 +90,10 @@ public class EldroWController {
     }
 
 
-    
+
     @RequestMapping(path = "/solution", method = RequestMethod.POST)
-    public String getWord(@RequestParam Integer solutionId){
-        return wordSourceDAO.getWord(solutionId);
+    public String getWord(@RequestParam String solutionId){
+        return wordSourceDAO.getWord(Integer.parseInt(solutionId));
     }
 
 }

@@ -24,14 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
 
     refreshButton.addEventListener('click', (event) => {
+        if(!winner){
+            revealWord();
+        }
         winner = false;
-        alertBox.innerText = '';
         resetBoard();
-        revealWord();
         getNewWord();
     });
-
-
     getNewWord();
 
 });
@@ -82,6 +81,7 @@ function inputController(key){
         currentUserGuess += key.innerText;
         activeChar++;
     }
+    
 }
 
 //updates the styling of the current editing box
@@ -239,6 +239,8 @@ function showAnswer(guessValidation){
         activeChar = 0;
         activeRow++;
         currentUserGuess = '';
+        if(activeRow>5){
+            revealWord();
     }
     
 }

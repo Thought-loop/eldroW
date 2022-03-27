@@ -189,12 +189,9 @@ function revealWord(){
             'Content-Type': 'application/json'
           },
         body: JSON.stringify({solutionId: gameSolutionID})
-        }).then(response => response.text()) 
-        .then((dataStr) => {
-            let data = JSON.parse(dataStr);
-            displaySolution(data);
-        }            
-        ).catch((error)=>{
+        }).then(result => {result.json().then(data => displaySolution(data));
+            
+        }).catch(error=>{
             console.error(error);
           });
 }

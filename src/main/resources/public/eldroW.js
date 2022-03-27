@@ -197,7 +197,7 @@ function revealWord(){
 }
 
 function displaySolution(word){
-    alertBox.innerText = 'The word was: ' + word;
+    alertBox.innerText = 'The word was: ' + word[0];
 }
 
 function showAnswer(guessValidation){

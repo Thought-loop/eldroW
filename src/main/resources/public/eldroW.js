@@ -1,4 +1,5 @@
 const API_BASE_URL = ''
+const A_Z_LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 //rows 0-5. 0 at top
 let activeRow = 0;
 //characters 0-4. 0 on left
@@ -18,10 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
     alertBox = document.querySelector('.alert-box');
     refreshButton = document.querySelector('.refresh-button');
     
-    //add listeners to all keys
+    //add listeners to all on-screen-keyboard keys
     letterKeys.forEach(el => el.addEventListener('click', event => {
-        if(!winner){inputController(event.target)};
+        if(!winner){inputController(event.target.innerText)};
     }));
+
+    //add listeners for physical keyboard
+    document.addEventListener('keydown', function (event) {
+        let key = event.key.toUpperCase();
+        if(!winner){
+            if(A_Z_LETTERS.includes(key)){
+                inputController(key);
+            }
+            else if(key == 'BACKSPACE'){
+                inputController('DEL');
+            }
+            else if(event.key == 'Enter'){
+                inputController('ENTER');
+            }
+        };
+      });   
 
     refreshButton.addEventListener('click', (event) => {
         if(!winner){
@@ -35,14 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function inputController(key){
+// function keyboardParse(eventKey){
+//     let keyEvent = eventKey;
+//     console.log(keyEvent.to
+// }
 
+function inputController(key){
+    //clear alert area on any keypress
+    alertBox.innerText = '';
     let wordLine = document.getElementById('word-line-'+ activeRow);
     let letters = wordLine.querySelectorAll('.letter-box')
 
     //delete characters as allowed and removes box styling
     //remove character from currentUserGuess
-    if(key.innerText === 'DEL'){
+    if(key === 'DEL'){
         if(activeChar>0){
             activeChar--;
             letters[activeChar].innerText = '';
@@ -52,7 +75,7 @@ function inputController(key){
         }
     }
     //submit a complete line
-    else if((key.innerText == "ENTER") && (activeChar >= 4)){
+    else if((key == "ENTER") && (activeChar >= 4)){
         //call to check the word
         //show green/yellow/gray
         //update keyboard
@@ -60,7 +83,7 @@ function inputController(key){
         checkWord(currentUserGuess);
     }
     //ignore enter for incomplete line
-    else if((key.innerText == "ENTER")){
+    else if((key == "ENTER")){
         //do nothing
     }
     //add characters on current line as allowed
@@ -68,17 +91,17 @@ function inputController(key){
     //update button class as-required
     //concatenate character to currentUserGuess
     else if(activeChar<5){
-        if(correctChars[activeChar]==key.innerText){
+        if(correctChars[activeChar]==key){
             updateCurrentBoxStyle('correct');
         }
-        else if(containsChars[activeChar].includes(key.innerText)){
+        else if(containsChars[activeChar].includes(key)){
             updateCurrentBoxStyle('contains');
         }
         else{
             updateCurrentBoxStyle('filled');
         }
-        letters[activeChar].innerText = key.innerText;
-        currentUserGuess += key.innerText;
+        letters[activeChar].innerText = key;
+        currentUserGuess += key;
         activeChar++;
     }
     

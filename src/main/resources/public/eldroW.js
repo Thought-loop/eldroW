@@ -241,6 +241,7 @@ function showAnswer(guessValidation){
         currentUserGuess = '';
         if(activeRow>5){
             revealWord();
+        }
     }
     
 }
